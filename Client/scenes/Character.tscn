@@ -1,0 +1,64 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://resources/sprites/character/Skeleton2.png" type="Texture" id=1]
+[ext_resource path="res://resources/sprites/character/Skeleton5.png" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/character/Skeleton1.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Character.gd" type="Script" id=4]
+[ext_resource path="res://resources/sprites/character/Skeleton3.png" type="Texture" id=5]
+[ext_resource path="res://resources/sprites/character/Skeleton4.png" type="Texture" id=6]
+[ext_resource path="res://resources/sprites/character/skeleton_BW5.png" type="Texture" id=7]
+[ext_resource path="res://resources/sprites/character/skeleton_BW1.png" type="Texture" id=8]
+[ext_resource path="res://resources/sprites/character/skeleton_BW3.png" type="Texture" id=9]
+[ext_resource path="res://resources/sprites/character/skeleton_BW4.png" type="Texture" id=10]
+[ext_resource path="res://resources/sprites/character/skeleton_BW2.png" type="Texture" id=11]
+[ext_resource path="res://resources/sprites/character/skeleton_left2.png" type="Texture" id=12]
+[ext_resource path="res://resources/sprites/character/skeleton_left1.png" type="Texture" id=13]
+[ext_resource path="res://resources/sprites/character/skeleton_left3.png" type="Texture" id=14]
+[ext_resource path="res://resources/sprites/character/skeleton_left4.png" type="Texture" id=15]
+[ext_resource path="res://resources/sprites/character/skeleton_left5.png" type="Texture" id=16]
+[ext_resource path="res://resources/sprites/character/skeleton_right4.png" type="Texture" id=17]
+[ext_resource path="res://resources/sprites/character/skeleton_right3.png" type="Texture" id=18]
+[ext_resource path="res://resources/sprites/character/skeleton_right5.png" type="Texture" id=19]
+[ext_resource path="res://resources/sprites/character/skeleton_right2.png" type="Texture" id=20]
+[ext_resource path="res://resources/sprites/character/skeleton_right1.png" type="Texture" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "left",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "right",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "up",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "down",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 11.4112
+height = 22.0722
+
+[node name="Character" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 19
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6 )
+shape = SubResource( 2 )

@@ -1,0 +1,170 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Login.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Login" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinPanel" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 310.0
+margin_top = 211.0
+margin_right = 714.0
+margin_bottom = 389.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/JoinPanel"]
+margin_right = 404.0
+margin_bottom = 14.0
+text = "Multiplayer"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/JoinPanel"]
+margin_top = 18.0
+margin_right = 404.0
+margin_bottom = 38.0
+custom_constants/separation = 20
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/JoinPanel"]
+margin_top = 42.0
+margin_right = 404.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 0, 25 )
+alignment = 1
+
+[node name="AliasL" type="Label" parent="CenterContainer/JoinPanel/HBoxContainer3"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+text = "Alias"
+align = 1
+valign = 1
+
+[node name="Alias" type="TextEdit" parent="CenterContainer/JoinPanel/HBoxContainer3"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 0 )
+text = "Lord Knifington"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/JoinPanel"]
+margin_top = 71.0
+margin_right = 404.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 0, 25 )
+alignment = 1
+
+[node name="IPL" type="Label" parent="CenterContainer/JoinPanel/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+text = "IP"
+align = 1
+valign = 1
+
+[node name="IP" type="TextEdit" parent="CenterContainer/JoinPanel/HBoxContainer"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 0 )
+text = "127.0.0.1"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/JoinPanel"]
+margin_top = 100.0
+margin_right = 404.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 0, 25 )
+alignment = 1
+
+[node name="PortL" type="Label" parent="CenterContainer/JoinPanel/HBoxContainer2"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+text = "Port"
+align = 1
+valign = 1
+
+[node name="Port" type="TextEdit" parent="CenterContainer/JoinPanel/HBoxContainer2"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 0 )
+text = "15001"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/JoinPanel"]
+margin_top = 129.0
+margin_right = 404.0
+margin_bottom = 149.0
+custom_styles/separator = SubResource( 1 )
+custom_constants/separation = 20
+
+[node name="JoinButton" type="Button" parent="CenterContainer/JoinPanel"]
+margin_left = 162.0
+margin_top = 153.0
+margin_right = 242.0
+margin_bottom = 178.0
+rect_min_size = Vector2( 80, 25 )
+size_flags_horizontal = 4
+text = "JOIN"
+
+[node name="LobbyPanel" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+margin_left = 362.0
+margin_top = 214.0
+margin_right = 662.0
+margin_bottom = 385.0
+
+[node name="ParticipantsL" type="Label" parent="CenterContainer/LobbyPanel"]
+margin_right = 300.0
+margin_bottom = 14.0
+text = "Participants (Min 3, Max 5)"
+align = 1
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/LobbyPanel"]
+margin_top = 18.0
+margin_right = 300.0
+margin_bottom = 38.0
+custom_constants/separation = 20
+
+[node name="Participants" type="ItemList" parent="CenterContainer/LobbyPanel"]
+margin_top = 42.0
+margin_right = 300.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 300, 100 )
+
+[node name="ReadyButton" type="Button" parent="CenterContainer/LobbyPanel"]
+margin_left = 110.0
+margin_top = 146.0
+margin_right = 190.0
+margin_bottom = 171.0
+rect_min_size = Vector2( 80, 25 )
+size_flags_horizontal = 4
+text = "READY"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LobbyRefresh" type="Timer" parent="CenterContainer/LobbyPanel"]
+wait_time = 0.5
+
+[connection signal="pressed" from="CenterContainer/JoinPanel/JoinButton" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="CenterContainer/LobbyPanel/ReadyButton" to="." method="_on_Ready_pressed"]
+[connection signal="timeout" from="CenterContainer/LobbyPanel/LobbyRefresh" to="." method="_on_LobbyRefresh_timeout"]
